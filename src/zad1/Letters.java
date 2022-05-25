@@ -8,19 +8,18 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Letters {
 
     private volatile boolean stopRequested;
-    private List<String>threads;
-    private List<Letter> threadList;
+    private final List<Letter> threadList;
 
     public Letters(String threadNames) {
         this.stopRequested = false;
-        this.threads = Arrays.asList(threadNames.split(""));
+        List<String> threads = Arrays.asList(threadNames.split(""));
         threadList = new ArrayList<>();
         for(String s : threads){
             threadList.add(new Letter(s));
         }
     }
 
-    public List<Letter> getThreads() {
+    public List<Letter> getThreadNames() {
         return threadList;
     }
 
@@ -30,7 +29,7 @@ public class Letters {
 
     private class Letter extends Thread{
 
-        private String letter;
+        private final String letter;
 
         public Letter(String name) {
             super("Thread " + name);
@@ -47,6 +46,5 @@ public class Letters {
                 }
             }
         }
-
     }
 }
