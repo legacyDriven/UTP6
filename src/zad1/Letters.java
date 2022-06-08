@@ -6,7 +6,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Letters {
 
-    private final AtomicBoolean running = new AtomicBoolean(false);
     private final List<Letter> threadList;
 
     public Letters(String threadNames) {
@@ -23,12 +22,14 @@ public class Letters {
 
     public void killAllThreads(){
         for(Letter t : threadList){
-            running.set(false);
+            t.running.set(false);
             t.interrupt();
         }
     }
 
     private class Letter extends Thread{
+
+        private final AtomicBoolean running = new AtomicBoolean(false);
 
         private final String letter;
 
