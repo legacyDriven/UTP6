@@ -26,7 +26,7 @@ public class Letters {
         }
     }
 
-    private class Letter extends Thread{
+    private static class Letter extends Thread{
 
         private final AtomicBoolean running = new AtomicBoolean(false);
 
