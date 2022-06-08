@@ -23,7 +23,6 @@ public class Letters {
     public void killAllThreads(){
         for(Letter t : threadList){
             t.running.set(false);
-            t.interrupt();
         }
     }
 
