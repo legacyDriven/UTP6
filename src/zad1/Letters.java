@@ -22,7 +22,7 @@ public class Letters {
 
     public void killAllThreads(){
         for(Letter t : threadList){
-            t.running.set(false);
+            t.killThread();
         }
     }
 
@@ -47,6 +47,10 @@ public class Letters {
                     e.printStackTrace();
                 }
             }
+        }
+        
+        private void killThread(){
+        this.running.set(false);
         }
     }
 }
