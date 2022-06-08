@@ -26,11 +26,11 @@ public class Main {
     }
     while (!task.isDone()) {
       Thread.sleep(500);
-      switch(task.getState()) {
-        case RUNNING: System.out.print("R."); break;
-        case ABORTED: System.out.println(" ... aborted."); break;
-        case READY: System.out.println(" ... ready."); break;
-        default: System.out.println("unknown state");
+      switch (task.getState()) {
+        case RUNNING -> System.out.print("R.");
+        case ABORTED -> System.out.println(" ... aborted.");
+        case READY -> System.out.println(" ... ready.");
+        default -> System.out.println("unknown state");
       }
 
     }

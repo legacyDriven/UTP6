@@ -49,3 +49,5 @@ Uwaga 1: modyfikacje klasy Main są dopuszczalne tylko w miejscach wskazanych pr
 Uwaga 2: nie wolno stosować System.exit
 Uwaga 3: warto przy definiowaniu metody run() zastosować lambda-wyrażenie
 Uwaga 4. W tyn zadania można nie stosować (a nawet nie należy stosować) ExecutorService
+
+busy waiting
