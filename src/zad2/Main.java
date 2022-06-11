@@ -37,4 +37,5 @@ public class Main {
     System.out.println("Task " + task.getState());
     System.out.println(task.getResult().length());
   }
+
 }

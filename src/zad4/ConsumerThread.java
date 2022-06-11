@@ -1,21 +1,24 @@
 package zad4;
 
+import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ConsumerThread implements Runnable {
 
-    private AtomicInteger result;
+    private final AtomicInteger result;
 
-    private BlockingQueue <Product> source;
+    private final BlockingQueue <Product> source;
 
     private final Product poisonPill;
 
-    private AtomicBoolean isRunning;
+    private final AtomicBoolean isRunning;
 
-    public ConsumerThread(BlockingQueue<Product> source, int poisonPillValues) {
+    private int repsBeforeLog;
+
+    public ConsumerThread(BlockingQueue<Product> source, int poisonPillValues, int repsBeforeLog) {
+        this.repsBeforeLog = repsBeforeLog;
         this.isRunning = new AtomicBoolean(false);
         this.result = new AtomicInteger(0);
         this.source = source;
@@ -34,7 +37,7 @@ public class ConsumerThread implements Runnable {
                     return;
                 } else { result.addAndGet(current.getWeight());
                     counter++;
-                if(counter%100==0) System.out.println("policzono wage " + counter + " towarow");
+                if(counter%repsBeforeLog==0) System.out.println("policzono wage " + counter + " towarow");
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -43,4 +46,16 @@ public class ConsumerThread implements Runnable {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ConsumerThread that = (ConsumerThread) o;
+        return Objects.equals(result, that.result) && Objects.equals(source, that.source) && Objects.equals(poisonPill, that.poisonPill) && Objects.equals(isRunning, that.isRunning);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(result, source, poisonPill, isRunning);
+    }
 }

@@ -1,7 +1,6 @@
 package zad4;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -53,7 +52,7 @@ public final class CreatorUtility {
             ex.printStackTrace();
         }
 
-        try (Stream<String> stream = Files.lines(Paths.get("products.txt"))) {
+        try (Stream<String> stream = Files.lines(Paths.get("Towary.txt"))) {
             stream.forEach(plainTextProducts::add);
         }
 

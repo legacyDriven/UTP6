@@ -17,10 +17,8 @@ public class Main {
     BlockingQueue<Product> dataSource = new LinkedBlockingDeque<>();
 
     Thread prod = new Thread(new PublisherThread(200, -1, "Towary.txt", dataSource));
-    Thread cons = new Thread(new ConsumerThread(dataSource, -1));
+    Thread cons = new Thread(new ConsumerThread(dataSource, -1, 100));
     prod.start();
-    //prod.join();
     cons.start();
-    System.out.println(dataSource.size());
   }
 }

@@ -8,11 +8,11 @@ import java.util.concurrent.BlockingQueue;
 
 public class PublisherThread implements Runnable {
 
-    private int repsBeforeLog;
+    private final int repsBeforeLog;
 
     private final Product poisonPill;
 
-    private String pathToReadFrom;
+    private final String pathToReadFrom;
 
     public BlockingQueue<Product> source;
 
@@ -31,11 +31,11 @@ public class PublisherThread implements Runnable {
             while ((line = br.readLine()) != null) {
                 source.put(Product.parseFromString(line));
                 counter++;
-                if(counter%200==0){
+                if(counter%repsBeforeLog==0){
                     System.out.println("utworzono " + counter + " obiektów");
                 }
             }
-            source.put(poisonPill); return;
+            source.put(poisonPill);
         } catch (IOException e) {
             System.out.println("IOException in try block =>" + e.getMessage());
         } catch (InterruptedException e) {
